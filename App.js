@@ -1,17 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { useState } from 'react';
 import Header from './components/header';
+import Body from './components/body';
 
 export default function App() {
+  const [dados, setDados] = useState();
   return (
-    <View style={styles.background}>
+    <View>
+      <View style={styles.header}>
         <Header></Header>
+      </View>
+      <View style={styles.body}>
+        <Body></Body>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
+  header: {
     flex:1,
-    alignItems:'center',
+    alignItems:'center'
   },
+  body:{
+    marginTop:Dimensions.get('window').height / 6,
+  }
 });

@@ -2,8 +2,10 @@ import { StyleSheet, Text, View, Dimensions, TextInput } from 'react-native';
 import { useState } from 'react';
 import { Icon } from 'react-native-elements';
 import Api from './api';
-export default ()=>{
-    const [cidade, setCidade] = useState("");
+import Body from './body';
+
+export default props=>{
+    const [cidade, setCidade] = useState("Peruibe");
     const [dados, setDados] = useState();
     return(
         <View style={styles.background}>
@@ -12,14 +14,14 @@ export default ()=>{
                     style={styles.input}
                     onChangeText={t =>{setCidade(t)}}
                     
-                    onSubmitEditing={async () =>{const resp = await Api.get(`weather?fields=only_results,temp,city_name,time,forecast,max,min,date,description&key=7ab934df&city_name=${cidade}`); setDados(resp.data)}}
+                    onSubmitEditing={async () =>{const resp = await Api.get(`weather?fields=only_results,temp,city_name,time,forecast,max,min,date,description&key=7ab934df&city_name=${cidade}`); setDados(resp.data);}}
                 />
             </View>
             <View style={styles.inputIcon}>
                 <Icon name='search'/>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
