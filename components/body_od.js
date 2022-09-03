@@ -1,47 +1,38 @@
-import { StyleSheet, Text, View, Dimensions, Image} from 'react-native';
+import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import { Icon } from 'react-native-elements';
+
 export default props=>{
     return(
         <View style={{opacity:props.opacity, fontFamily:'Roboto', flexDirection:'column', alignItems:'center'}}>
             <View style={{marginRight:Dimensions.get('window').width / 2}}>
                 <View style={styles.date}>
-                    <Text style={styles.dateFont}>{props.data.date}, {props.data.time}</Text>
+                    <Text style={styles.dateFont}>{props.data.date}/2022</Text>
                 </View>
                 <View style={styles.max_min}>
                     <View style={styles.max}>
-                        <Text style={styles.maxFont}>Max: {props.data.temp}°</Text>
+                        <Text style={styles.maxFont}>Max: {props.data.max}°</Text>
                         <Icon style={styles.maxIcon} size={15} color={'white'} name='north'/>
                     </View>
                     <View style={styles.min}>
-                        <Text style={styles.minFont}>Min: {props.data.temp}°</Text>
+                        <Text style={styles.minFont}>Min: {props.data.min}°</Text>
                         <Icon style={styles.minIcon} size={15} color={'white'} name='south'/>
                     </View>
                 </View>
-                <View style={styles.temp}>
-                    <Text style={styles.tempFont}>{props.data.temp}</Text>
-                    <Text style={styles.tempIcon}>°C</Text>
-                </View>
-            </View>
-            <View style={styles.rightWindow}>
                 <View style={styles.descrip}>
                     <Text style={styles.descripFont}>{props.data.description}</Text>
                 </View>
             </View>
-            <View style={styles.centerWindow}>
-                <View style={styles.humidity}>
-                    <Text style={styles.humidityFont}>Humidade atual: ({props.data.humidity}%)</Text>
-                </View>
+            <View style={styles.rightWindow}>
+                <Text style={styles.descripFont}>{props.data.weekday}</Text>
             </View>
         </View>
     )
 }
-
 const styles = StyleSheet.create({
     rightWindow:{
-        marginLeft:Dimensions.get('window').width / 2.2,
+        marginLeft:Dimensions.get('window').width / 2,
         position:'relative',
-        bottom:30,
-        alignItems:'center'
+        bottom:30
     },
     centerWindow:{
         alignItems:'center',
@@ -82,28 +73,15 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
     },
-    temp:{
+    descrip:{
         alignItems:'center',
-        flexDirection:'row'
-    },
-    tempFont:{
-        fontSize:100,
-        color:'white',
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -1, height: 1},
-        textShadowRadius: 10
-    },
-    tempIcon:{
-        fontSize: 50,
-        color:'white',
-        marginBottom:20,
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -1, height: 1},
-        textShadowRadius: 10
-    },
+        justifyContent:'center',
+        marginLeft:25,
+        marginTop:20
+    },  
     descripFont:{
         fontWeight:'bold',
-        fontSize:15,
+        fontSize:20,
         color:'white',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 1},
