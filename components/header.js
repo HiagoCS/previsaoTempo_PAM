@@ -1,24 +1,15 @@
-import { StyleSheet, Text, View, Dimensions, TextInput } from 'react-native';
-import { useState } from 'react';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Api from './api';
-import Body from './body';
-
 export default props=>{
-    const [cidade, setCidade] = useState("Peruibe");
-    const [dados, setDados] = useState();
     return(
         <View style={styles.background}>
             <View style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={t =>{setCidade(t)}}
-                    
-                    onSubmitEditing={async () =>{const resp = await Api.get(`weather?fields=only_results,temp,city_name,time,forecast,max,min,date,description&key=7ab934df&city_name=${cidade}`); setDados(resp.data);}}
-                />
+                {props.input}
             </View>
             <View style={styles.inputIcon}>
-                <Icon name='search'/>
+                <TouchableOpacity onPress={props.onClick}>
+                    <Icon name='search'/>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -33,10 +24,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'white'
-    },
-    input:{
-        width:Dimensions.get('window').width / 1.4,
-        height: Dimensions.get('window').height / 15
     },
     inputIcon:{
         position:'absolute',
